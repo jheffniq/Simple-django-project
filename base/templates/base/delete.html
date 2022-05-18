@@ -1,0 +1,18 @@
+{%  extends 'main.html' %}
+
+{%  block content %}
+<style>
+    a{
+        text-decoration: none;
+    }
+
+</style>
+<div class="container justify-content-center">
+<form method="POST" action="">
+{% csrf_token %}
+<h3>Are you sure you want to delete "{{obj}}"?</h3>
+<a class="btn btn-primary" href="{{request.META.HTTP_REFERER}}" role="button">NO</a>
+<button type="submit" class="btn btn-success">YES</button>
+</form>
+</div>
+{% endblock content %}

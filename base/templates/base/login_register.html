@@ -1,0 +1,45 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+<style>
+  a{
+    text-decoration: none;
+  }
+</style>
+{%  if page == 'login' %}
+
+<div class="cont d-flex justify-content-center">
+    <form method = "POST" action="">    
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="text" name = "username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder = "Enter Username">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder = "Enter Password">
+        </div>
+        <p> Haven't signed up yet? <a href= "{% url 'registerUser' %}">Sign Up Here!</a></p>
+        <button type="submit" class="btn btn-primary" value="Login">Log In</button>
+      </form>
+</div>
+
+{%else%}
+<div class="cont d-flex justify-content-center border">
+    <form method = "POST" action="">    
+        {% csrf_token %}
+        <br>
+        {{form.as_p}}
+        <div class="row">
+          <div class="col cont d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary" type = "Register">Register</button>
+          </div>
+          <div class="cont d-flex justify-content-center">
+            <p> Already Signed Up? <a href= "{% url 'loginUser' %}">Log In Here!</a></p>
+          </div>
+        </div>
+    <br>
+</div>
+{%endif%}
+
+{% endblock content %}

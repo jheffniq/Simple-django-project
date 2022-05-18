@@ -1,0 +1,67 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+<style>
+    a{
+        text-decoration: none;
+    }
+</style>
+<div>
+<div class="container">
+    <h5>Posted By: <a href= "{% url 'User Profile' room.host.id %}">@{{room.host.username}}</h5></a>
+    <h5>{{room.category}}</h5>
+    <h1>{{room.name}}</h1>
+
+    {% if room.payout == None %}
+    <h3>Pay: Not specified</h3>
+    {%else%}
+    <h3>Pay: ₱{{room.payout}}</h3>
+    {%endif%}
+
+    <p>{{room.description}}</p><br>
+
+</div>
+  
+
+<div class="container border border-dark rounded" style="padding: 2%;">
+<h3>Discussion</h3><hr>   
+{% for message in postMessages %}
+    {%  if request.user == message.user %}
+    <div class="row">
+        <div class = "col d-flex sm-2 justify-content-start"><a href = "{% url 'Delete Message' message.id %}">Delete</a></div>
+        <div class="col d-flex align-items-end flex-column">You:<br></div>
+    </div>
+
+    <div class="row justify-content-start bg-light border border-light rounded">
+
+         <div class="col d-flex sm-8 justify-content-end">{{message.body}}</div>
+    </div>
+         <div class="d-flex align-items-end flex-column">{{message.created|timesince}} ago</div>
+        <br>
+     {%else%}
+        <div class="d-flex align-items-start flex-column">@{{message.user}}:<br></div>
+        <div class="d-flex sm-8 justify-content-start bg-light border border-light rounded">{{message.body}}</div>
+        <div class="d-flex align-items-start flex-column">{{message.created|timesince}} ago</div>
+        <br><br>
+
+
+
+{%endif%}   
+{%endfor%}
+</div>
+
+
+    {% if request.user.is_authenticated %}
+    <div class = "container d-flex p-2 justify-content-center">
+        <form method = "POST" action = "">
+            {% csrf_token %}
+            <input type = "text" name = "commentbox" placeholder = "Type to send message" rows = "4" style = "height: 10vh; width: 180vh;"/>
+        </form>
+
+     </div>
+        {%endif%}
+    </div>
+</div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,57 @@
+{%  extends 'main.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+    <div class="col-sm-4">
+
+        {% include 'base/categories_component.html' %} 
+
+    </div>
+    <div class="col-sm-8 ">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center justify-content-center">
+                <h4>{{room_count}} jobs available</h4>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-center">
+            <a href= "{% url 'Create Room' %}" class="btn btn-primary btn-lg btn-block" role="button">Post a Job</a>
+            </div>
+        </div>
+        <hr visibility:none;>
+        {%  include 'base/displays_component.html' %} 
+    </div>
+</div>
+</div>
+
+
+
+
+<!--<style>
+    .home-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+</style>-->
+
+
+
+<!--
+<div>
+
+    <div class="home-container">
+        <div>
+           {% include 'base/categories_component.html' %}
+        </div>
+    <div>
+        <a href= "{% url 'Create Room' %}" class="btn btn-primary btn-lg btn-block" role="button">Post a Job</a>
+        <a href= "{% url 'Create Room' %}">Create Job Post</a> 
+        <br><br><h5>{{room_count}} jobs available</h5><br>
+
+        <div>
+        {%  include 'base/displays_component.html' %} 
+        </div>
+        
+    </div>
+</div>-->
+
+{% endblock content %} 

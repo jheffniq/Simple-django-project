@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container">
+
+<div class="d-flex justify-content-center">
+    <h1>@{{user.username}}<br><br></h1>
+</div>
+
+
+
+<div class = "container border border-dark rounded">
+    <div>
+        <div class="d-flex justify-content-center">
+            <h2><br><strong>Jobs Posted</strong><br><br></h2>
+        </div>
+        {%  include 'base/displays_component.html' %}
+    </div>
+
+</div>
+
+</div>
+{% endblock content %}

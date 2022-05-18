@@ -1,0 +1,18 @@
+{% block content %}
+<div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action active">
+      <h3>Browse Job Categories</h3>
+    </button>
+
+<div>
+    <a href = "{% url 'home' %}" class="list-group-item list-group-item-action"><h4>All</h4></a>
+</div>
+
+{%  for topic in topics %}
+    <div>
+        <a href = "{% url 'home' %}?q={{topic.name}}" class="list-group-item list-group-item-action"><h4>{{topic.name}}</h4></a>
+    </div>
+
+{% endfor %}
+</div>
+{%endblock content%}

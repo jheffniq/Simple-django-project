@@ -1,0 +1,40 @@
+<style>
+    a{
+        text-decoration: none;
+    }
+</style>
+{%block content%}
+
+{% for room in rooms %}
+ 
+<div class = "list-group list-group-flush">
+    <div class="row">
+        <div class="col d-flex align-items-center">
+            {%  if request.user == room.host %}
+            <h6>Posted By: You</h6>
+            {%else%}
+            <h6>Posted By: <a href= "{% url 'User Profile' room.host.id %}">@{{room.host.username}}</h6></a>
+            {%endif%}
+            </div>
+        <div class="col ">
+        {%  if request.user == room.host %}
+        <a class="btn btn-primary" href = "{%url 'Update Room' room.id %}" role="button">Edit</a>
+        <a class="btn btn-danger" href = "{% url 'Delete Room' room.id %}" role="button">Delete</a>
+        {%endif%}
+        </div>
+
+    </div>
+    <small>{{room.category.name}}</small>
+    <h3><a href = "{% url 'room' room.id %}">{{room.name}}</a></h3>
+    {% if room.payout == None %}
+    <h5>Pay: Not specified</h5>
+    {%else%}
+    <h5>Pay: ₱{{room.payout}}</h5>
+    {%endif%}
+    <hr>
+</div>
+
+
+
+{% endfor %}
+{%endblock content%}
